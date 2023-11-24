@@ -28,7 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .addFilter(corsFilter)
             .formLogin().disable()
-            .httpBasic().disable() // session에 ID, PW를 담아서 보내는 방식 (barer방식을 사용하여 사용자 인증가능)
+            .httpBasic().disable() // session에 ID, PW를 담아서 보내는 방식 (bearer token방식을 사용하여 사용자 인증가능)
             .authorizeRequests()
             .antMatchers("/api/v1/user/**")
             .access("hasRole('ROLE_USER') or hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")
