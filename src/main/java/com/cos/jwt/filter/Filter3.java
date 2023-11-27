@@ -17,7 +17,7 @@ public class Filter3 implements Filter {
             if(header.equals("token")){
                 filterChain.doFilter(req,res);
             }else{
-                System.out.println("filter1");
+                System.out.println("filter3");
                 System.out.println("토큰고장");
             }
         }
