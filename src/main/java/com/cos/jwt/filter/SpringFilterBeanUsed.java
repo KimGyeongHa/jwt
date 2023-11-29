@@ -3,10 +3,11 @@ package com.cos.jwt.filter;
 import javax.servlet.*;
 import java.io.IOException;
 
-public class Filter2 implements Filter {
+public class SpringFilterBeanUsed implements Filter {
+
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        System.out.println("필터2");
+        System.out.println("Bean으로 등록한 필터사용");
         filterChain.doFilter(servletRequest,servletResponse);
     }
 }

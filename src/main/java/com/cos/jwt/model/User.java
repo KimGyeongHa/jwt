@@ -1,5 +1,6 @@
 package com.cos.jwt.model;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import javax.persistence.Entity;
@@ -23,7 +24,7 @@ public class User {
     private String roles;
 
     public List<String> getRoles(){
-        if(!"".equals(roles)) return Arrays.asList(this.roles.split(","));
+        if(!"".equals(roles) && roles != null) return Arrays.asList(this.roles.split(","));
         return new ArrayList<>();
     }
 

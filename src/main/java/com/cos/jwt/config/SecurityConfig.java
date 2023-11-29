@@ -2,7 +2,8 @@ package com.cos.jwt.config;
 
 
 import com.cos.jwt.config.jwt.JwtAuthenticationFilter;
-import com.cos.jwt.filter.Filter3;
+import com.cos.jwt.filter.AuthorizationFilter;
+import com.cos.jwt.config.jwt.JwtAuthorizaionFilter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -23,14 +24,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterBefore(new Filter3(), BasicAuthenticationFilter.class);
+        http.addFilterBefore(new AuthorizationFilter(), BasicAuthenticationFilter.class);
         http.csrf().disable();
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // session 사용설정 제거
                 .and()
                 .addFilter(corsFilter)
                 .formLogin().disable()
                 .httpBasic().disable() // session에 ID, PW를 담아서 보내는 방식 (barer방식을 사용하여 사용자 인증가능)
-                .addFilter(new JwtAuthenticationFilter(authenticationManager())) //form 로그인을 사용하지 않고 특정 방식을 사용하여 로그인을 시도할 때 사용
+                .addFilter(new JwtAuthenticationFilter(authenticationManager())) //form 로그인을 사용하지 않고 특정 방식을 사용하여 로그인을 시도를 위한 필터
+                .addFilter(new JwtAuthorizaionFilter(authenticationManager())) // jwt token 유효성 검증을 위한 필터
                 .authorizeRequests()
                 .antMatchers("/api/v1/user/**")
                 .access("hasRole('ROLE_USER') or hasRole('ROLE_MANAGER') or hasRole('ROLE_ADMIN')")

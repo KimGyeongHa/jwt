@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class Filter3 implements Filter {
+public class AuthorizationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) servletRequest;
@@ -14,12 +14,9 @@ public class Filter3 implements Filter {
         if(req.getMethod().equals("POST")) {
             System.out.println("post요청됨");
             String header = req.getHeader("Authorization");
-            if(header.equals("token")){
-                filterChain.doFilter(req,res);
-            }else{
-                System.out.println("filter3");
-                System.out.println("토큰고장");
-            }
+
+            if(header.equals("token")) filterChain.doFilter(req,res);
+            else System.out.println("filter3 토큰고장");
         }
     }
 }
