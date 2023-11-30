@@ -40,4 +40,13 @@ public class RestApiController {
         return "<p>"+ user1.getUsername() +"</p>";
     }
 
+    @PostMapping("/api/v1/user/test")
+    public String test(@RequestBody User user){
+
+
+
+        return "";
+    }
+
+
 }
