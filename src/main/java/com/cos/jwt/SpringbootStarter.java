@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @SpringBootApplication
-public class SpringbootStarter {
+public class  SpringbootStarter {
 
     @Bean
     public  BCryptPasswordEncoder bCryptPasswordEncoder(){

@@ -15,22 +15,22 @@ public class RestApiController {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 
 
-    @GetMapping("home")
+    @GetMapping("/home")
     public String goHome(){
         return"<h1>home</h1>";
     }
 
-    @PostMapping("home2")
+    @PostMapping("/home2")
     public String goHome2(){
         return"<h1>home</h1>";
     }
 
-    @PostMapping("token")
+    @PostMapping("/token")
     public String token(){
         return"<h1>token</h1>";
     }
 
-    @PostMapping("join")
+    @PostMapping("/join")
     public String join (@RequestBody User user){
         user.setRoles("ROLE_USER");
         user.setUsername(user.getUsername());
